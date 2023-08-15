@@ -1,0 +1,14 @@
+﻿@model Trainee
+@{
+	ViewData["Title"] = "Add New Trainee";
+	SelectList selectLists = ViewBag.Tracks;
+}
+<h3>Add A Trainee</h3>
+<form asp-action="Create" class="form">
+	<partial name="_TraineeForm" model="@Model" />
+	<div class="d-flex align-items-center justify-content-between">
+		<input type="submit" value="Add" class="btn btn-primary mt-3" />
+		<a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+	</div>
+
+</form>

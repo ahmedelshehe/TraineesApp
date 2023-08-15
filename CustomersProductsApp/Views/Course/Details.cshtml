@@ -1,0 +1,32 @@
+﻿@model Course
+@{
+    ViewData["Title"] = Model.Topic;
+}
+<h3>Course @ViewData["Title"] Page</h3>
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><label asp-for="Id"></label></td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Topic"></label></td>
+                <td>@Model.Topic</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Grade"></label></td>
+                <td>@Model.Grade<td>
+            </tr>
+            <tr>
+                <td><label asp-for="Track"></label></td>
+                <td>@Model.Track.Name</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+
+</div>
+

@@ -1,0 +1,14 @@
+﻿@model Course
+@{
+	ViewData["Title"] = $"Edit {Model.Topic} Course";
+}
+<h3>@ViewData["Title"]</h3>
+<form asp-action="Edit" class="form">
+	<input asp-for="Id" type="hidden" />
+	<partial name="_CourseForm" model="@Model" />
+	<div class="d-flex align-items-center justify-content-between">
+		<input type="submit" value="Edit" class="btn btn-primary mt-3" />
+		<a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+	</div>
+
+</form>

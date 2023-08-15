@@ -1,0 +1,36 @@
+﻿@model Trainee
+@{
+    ViewData["Title"] = Model.Name;
+}
+<h3>Trainee @ViewData["Title"] Page</h3>
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><label asp-for="Id"></label></td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Name"></label></td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td><label asp-for="email"></label></td>
+                <td>@Model.email<td>
+            </tr>
+            <tr>
+                <td><label asp-for="Track"></label></td>
+                <td>@Model.Track.Name</td>
+            </tr>
+            <tr>
+                <td><label asp-for="MobileNumber"></label></td>
+                <td>@Model.MobileNumber</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+
+</div>
+

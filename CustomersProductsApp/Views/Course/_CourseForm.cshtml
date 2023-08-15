@@ -1,0 +1,22 @@
+﻿@model Course
+@{
+	SelectList selectLists = ViewBag.Tracks;
+
+}
+<div class="form-group">
+	<label asp-for="Topic"></label>
+	<input asp-for="Topic" class="form-control" />
+	<span asp-validation-for="Topic" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label asp-for="Grade" class="control-label"></label>
+	<input asp-for="Grade" class="form-control">
+	<span asp-validation-for="Grade" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label">Tracks</label>
+	<select asp-for="TrackId" asp-items="selectLists" class="form-select">
+		<option selected disabled hidden value="">Choose A Track</option>
+	</select>
+	<span asp-validation-for="TrackId" class="text-danger"></span>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Track>
+
+@{
+    ViewData["Title"] = "Tracks";
+    Track t = Model.FirstOrDefault();
+}
+<div class="d-flex align-items-center justify-content-between">
+    <h1>Tracks Table</h1>
+    <a asp-action="Create" class="btn btn-outline-info">Add a Track</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label asp-for="@t.Id"></label></th>
+            <th><label asp-for="@t.Name"></label></th>
+            <th><label asp-for="@t.Description"></label></th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Track track in Model)
+        {
+            <tr>
+                <td>@track.Id</td>
+                <td>@track.Name</td>
+                <td>@track.Description</td>
+                <td><a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@track.Id">Details</a> </td>
+                <td><a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@track.Id">Edit</a></td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@track.Id"
+                       onclick="return confirm('Are you sure you want to delete this Track?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

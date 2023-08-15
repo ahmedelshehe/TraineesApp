@@ -1,0 +1,27 @@
+﻿@model Track
+@{
+    ViewData["Title"] = Model.Name;
+}
+<h3>Track @ViewData["Title"] Page</h3>
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><label asp-for="Id"></label></td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Name"></label></td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td><label asp-for="Description"></label></td>
+                <td>@Model.Description<td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+
+</div>
+

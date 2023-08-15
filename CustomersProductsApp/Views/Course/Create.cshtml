@@ -1,0 +1,15 @@
+﻿@model Course
+@{
+	ViewData["Title"] = "Add New Course";
+
+}
+<form asp-action="Create" class="form">
+	
+	<partial name="_CourseForm" model="@Model" />
+
+	<div class="d-flex align-items-center justify-content-between">
+		<input type="submit" value="Add" class="btn btn-primary mt-3" />
+		<a asp-action="Index" class="btn btn-outline-success">Back to List</a>
+	</div>
+
+</form>

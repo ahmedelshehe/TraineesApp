@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Trainee>
+@{
+    ViewData["Title"] = "Trainees";
+    Trainee t = Model.FirstOrDefault();
+    SelectList selectLists = ViewBag.SelectList;
+}
+<div class="d-flex align-items-center justify-content-between">
+    <h1>@ViewData["Title"] Table</h1>
+    <a asp-action="Create" class="btn btn-outline-info">Add a Trainee</a>
+</div>
+<form method="post" >
+    <div class="form-group">
+        <label class="control-label">Tracks</label>
+        <select name="TrackId" asp-items="selectLists" class="form-select">
+            <option value="0">All</option>
+            <option value="-1">None</option>
+        </select>
+    </div>
+    <input type="submit" class="btn btn-info" value="Search" />
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label asp-for="@t.Id"></label></th>
+            <th><label asp-for="@t.Name"></label></th>
+            <th><label asp-for="@t.Gender"></label></th>
+            <th><label asp-for="@t.email"></label></th>
+            <th><label asp-for="@t.MobileNumber"></label></th>
+            <th><label>Track Name</label></th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Trainee trainee in Model)
+        {
+            <tr>
+                <td>@trainee.Id</td>
+                <td>@trainee.Name</td>
+                <td>@trainee.Gender</td>
+                <td>@trainee.email</td>
+                <td>@trainee.MobileNumber</td>
+                @if(trainee.Track == null)
+                { 
+                    <td>No Track Yet</td>
+                }
+                else
+                {
+                    <td>@trainee.Track.Name</td>
+                }
+                <td><a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@trainee.Id">Details</a> </td>
+                <td><a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@trainee.Id">Edit</a></td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@trainee.Id"
+                       onclick="return confirm('Are you sure you want to delete this Trainee?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
