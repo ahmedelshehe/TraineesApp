@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using TraineesApp.Models;
 using TraineesApp.Repositories;
 
@@ -16,6 +18,7 @@ namespace TraineesApp.Controllers
             _trackRepository = trackRepository;
         }
 
+        [Authorize(Roles = "Member,Administrator")]
         public ActionResult Index()
         {
 
@@ -26,6 +29,7 @@ namespace TraineesApp.Controllers
             return View(trainees);
         }
         [HttpPost]
+        [Authorize(Roles = "Member,Administrator")]
         public ActionResult Index(int TrackId)
         {
             var tracks = _trackRepository.GetAll().ToList();
@@ -52,12 +56,14 @@ namespace TraineesApp.Controllers
             }
 
         }
+        [Authorize(Roles = "Member,Administrator")]
         public ActionResult Details(int id)
         {
             var track = _traineeRepository.GetTraineeByIdWithTrack(id);
             return View(track);
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             var tracks = _trackRepository.GetAll();
@@ -67,6 +73,7 @@ namespace TraineesApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create(Trainee trainee)
         {
 
@@ -86,6 +93,7 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             var tracks = _trackRepository.GetAll();
@@ -96,6 +104,7 @@ namespace TraineesApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(Trainee trainee)
         {
             if (trainee.TrackId == 0)
@@ -116,11 +125,13 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             _traineeRepository.Delete(id);
             return RedirectToAction("Index");
         }
+
 
     }
 }

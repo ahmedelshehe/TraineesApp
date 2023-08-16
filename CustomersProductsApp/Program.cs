@@ -1,11 +1,16 @@
+using TraineesApp.Models;
+
 namespace TraineesApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
+            using (var scope = host.Services.CreateScope())
+            {
+                await DbInitializer.Initialize(scope.ServiceProvider);
+            }
             host.Run();
         }
 
@@ -15,7 +20,9 @@ namespace TraineesApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TraineesApp.Models;
 using TraineesApp.Repositories;
@@ -16,18 +17,21 @@ namespace TraineesApp.Controllers
             _trackRepository = trackRepository;
         }
 
+        [Authorize(Roles = "Member,Administrator")]
         public ActionResult Index()
         {
             var courses = _courseRepository.GetAllCoursesWithTrack();
             return View(courses);
         }
 
+        [Authorize(Roles = "Member,Administrator")]
         public ActionResult Details(int id)
         {
             var course = _courseRepository.GetCourseWithTrack(id);
             return View(course);
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             var tracks = _trackRepository.GetAll();
@@ -36,6 +40,7 @@ namespace TraineesApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Create(Course course)
         {
@@ -59,6 +64,7 @@ namespace TraineesApp.Controllers
 
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             var tracks = _trackRepository.GetAll();
@@ -68,6 +74,7 @@ namespace TraineesApp.Controllers
             return View(track);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Edit(Course course)
         {
@@ -86,11 +93,14 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             _courseRepository.Delete(id);
             return RedirectToAction("Index");
         }
+
+
 
     }
 }
