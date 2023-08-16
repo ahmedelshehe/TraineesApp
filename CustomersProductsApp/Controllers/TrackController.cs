@@ -21,6 +21,7 @@ namespace TraineesApp.Controllers
             return View(tracks);
         }
 
+        [Route("tracks/{id:int:min(1)}")]
         [Authorize(Roles = "Member,Administrator")]
         public ActionResult Details(int id)
         {
@@ -49,6 +50,7 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Route("tracks/edit/{id:int:min(1)}")]
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
@@ -72,6 +74,7 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Route("tracks/delete/{id:int:min(1)}")]
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {

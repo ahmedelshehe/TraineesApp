@@ -17,6 +17,7 @@ namespace TraineesApp.Controllers
             _trackRepository = trackRepository;
         }
 
+        [Route("courses")]
         [Authorize(Roles = "Member,Administrator")]
         public ActionResult Index()
         {
@@ -24,6 +25,7 @@ namespace TraineesApp.Controllers
             return View(courses);
         }
 
+        [Route("courses/{id:int:min(1)}")]
         [Authorize(Roles = "Member,Administrator")]
         public ActionResult Details(int id)
         {
@@ -64,6 +66,7 @@ namespace TraineesApp.Controllers
 
         }
 
+        [Route("courses/edit/{id:int:min(1)}")]
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
@@ -93,6 +96,7 @@ namespace TraineesApp.Controllers
             }
         }
 
+        [Route("courses/delete/{id:int:min(1)}")]
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
